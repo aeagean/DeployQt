@@ -6,28 +6,27 @@ static const QString PROGRAMS_PATH = QDir::homePath() + "/AppData/Roaming/Micros
 
 VersionMode::VersionMode()
 {
-    qDebug()<<PROGRAMS_PATH;
-
-    QDir dir(PROGRAMS_PATH);
-    QStringList filter = QStringList()<<"Qt*";
-    m_qtVersionList = dir.entryList(filter, QDir::NoFilter, QDir::Name);
 }
 
 QStringList VersionMode::qtVersionList()
 {
-    return m_qtVersionList;
+    QDir dir(PROGRAMS_PATH);
+    QStringList filter = QStringList()<<"Qt*";
+
+    return dir.entryList(filter, QDir::NoFilter, QDir::Name);
 }
 
 QStringList VersionMode::compilerVersionList()
 {
     QString qtVersionPath = PROGRAMS_PATH + m_qtVersion;
-
     QDir dir(qtVersionPath);
-    dir.cd(m_qtVersion.mid(3));
-    qDebug()<<dir.path();
-    m_compilerVersionList = dir.entryList(dir.filter() | QDir::NoDotAndDotDot);
-    qDebug()<<m_compilerVersionList;
-    return m_compilerVersionList;
+
+    int index = dir.entryList(dir.filter() | QDir::Dirs).indexOf(QRegExp("^[5]+(\\.\\d+)*$"));
+    if (index != -1) {
+        dir.cd(dir.entryList().at(index));
+    }
+
+    return dir.entryList(dir.filter() | QDir::NoDotAndDotDot);
 }
 
 QString VersionMode::qtVersion()
