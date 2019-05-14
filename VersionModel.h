@@ -1,10 +1,10 @@
-﻿#ifndef VERSIONMODE_H
-#define VERSIONMODE_H
+﻿#ifndef VERSIONMODEL_H
+#define VERSIONMODEL_H
 
 #include <QObject>
 #include <QProcess>
 
-class VersionMode : public QObject
+class VersionModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QStringList qtVersionList       READ qtVersionList                            NOTIFY listChanged)
@@ -14,7 +14,7 @@ class VersionMode : public QObject
     Q_PROPERTY(QString     exeFile             READ exeFile         WRITE setExeFile         NOTIFY statusChanged)
 
 public:
-    VersionMode();
+    VersionModel();
 
     Q_INVOKABLE bool create();
     Q_INVOKABLE bool test();
@@ -46,4 +46,4 @@ private:
     QProcess m_testProcess;
 };
 
-#endif // VERSIONMODE_H
+#endif // VERSIONMODEL_H
