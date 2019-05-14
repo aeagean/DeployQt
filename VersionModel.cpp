@@ -1,4 +1,4 @@
-﻿#include "VersionMode.h"
+﻿#include "VersionModel.h"
 #include <QDir>
 #include <QProcess>
 #include <QtGlobal>
@@ -6,11 +6,11 @@
 
 static const QString PROGRAMS_PATH = QDir::homePath() + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/";
 
-VersionMode::VersionMode()
+VersionModel::VersionModel()
 {
 }
 
-bool VersionMode::create()
+bool VersionModel::create()
 {
     m_testProcess.kill();
     qDebug()<<"[Info] "<<"Exe File: "<<m_exeFile;
@@ -47,7 +47,7 @@ bool VersionMode::create()
     return true;
 }
 
-bool VersionMode::test()
+bool VersionModel::test()
 {
     qDebug()<<"[Info]"<<"testing"<<m_exeFile;
     QFileInfo testFileInfo(m_exeFile);
@@ -60,7 +60,7 @@ bool VersionMode::test()
     return true;
 }
 
-QStringList VersionMode::qtVersionList()
+QStringList VersionModel::qtVersionList()
 {
     QDir dir(PROGRAMS_PATH);
     QStringList filter = QStringList()<<"Qt*";
@@ -68,7 +68,7 @@ QStringList VersionMode::qtVersionList()
     return dir.entryList(filter, QDir::NoFilter, QDir::Name);
 }
 
-QStringList VersionMode::compilerVersionList()
+QStringList VersionModel::compilerVersionList()
 {
     QString qtVersionPath = PROGRAMS_PATH + m_qtVersion;
     QDir dir(qtVersionPath);
@@ -86,12 +86,12 @@ QStringList VersionMode::compilerVersionList()
     return compilerList;
 }
 
-QString VersionMode::qtVersion()
+QString VersionModel::qtVersion()
 {
     return m_qtVersion;
 }
 
-void VersionMode::setQtVersion(const QString &version)
+void VersionModel::setQtVersion(const QString &version)
 {
     m_qtVersion = version;
 
@@ -99,23 +99,23 @@ void VersionMode::setQtVersion(const QString &version)
     emit listChanged();
 }
 
-QString VersionMode::compilerVersion()
+QString VersionModel::compilerVersion()
 {
     return m_compilerVersion;
 }
 
-void VersionMode::setCompilerVersion(const QString &version)
+void VersionModel::setCompilerVersion(const QString &version)
 {
     m_compilerVersion = version;
     emit statusChanged();
 }
 
-QString VersionMode::exeFile()
+QString VersionModel::exeFile()
 {
     return m_exeFile;
 }
 
-void VersionMode::setExeFile(const QString &file)
+void VersionModel::setExeFile(const QString &file)
 {
     m_exeFile = file;
     emit statusChanged();
