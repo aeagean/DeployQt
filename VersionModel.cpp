@@ -36,7 +36,7 @@ bool VersionModel::create()
 
         QProcess process;
         QString path = qtBinPath + ";" + qgetenv("PATH");
-        qputenv("PATH", path.toUtf8());
+        qputenv("PATH", path.toStdString().c_str());
         process.start("windeployqt.exe", arguments);
 
         process.waitForFinished();
