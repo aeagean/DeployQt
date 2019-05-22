@@ -15,9 +15,12 @@ import "./Common"
 Window {
     id: root
     visible: true
+    flags: Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint |
+           Qt.WindowTitleHint | Qt.WindowCloseButtonHint |
+           Qt.CustomizeWindowHint | Qt.WindowSystemMenuHint
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Qt程序打包工具V0.9(By Qtbig哥)")
 
     DropArea {
         anchors.fill: parent;
