@@ -1,4 +1,12 @@
-﻿#ifndef VERSIONMODEL_H
+﻿/**********************************************************
+Author: Qtbig哥
+WeChat Official Accounts Platform: nicaixiaoxuesheng (文章首发)
+Website: qtbig.com(后续更新)
+Email:  2088201923@qq.com
+QQ交流群: 732271126
+LISCENSE: MIT
+**********************************************************/
+#ifndef VERSIONMODEL_H
 #define VERSIONMODEL_H
 
 #include <QObject>
