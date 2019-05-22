@@ -1,4 +1,12 @@
-﻿#include "VersionModel.h"
+﻿/**********************************************************
+Author: Qtbig哥
+WeChat Official Accounts Platform: nicaixiaoxuesheng (文章首发)
+Website: qtbig.com(后续更新)
+Email:  2088201923@qq.com
+QQ交流群: 732271126
+LISCENSE: MIT
+**********************************************************/
+#include "VersionModel.h"
 #include <QDir>
 #include <QProcess>
 #include <QtGlobal>
