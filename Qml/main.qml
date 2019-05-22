@@ -17,8 +17,8 @@ Window {
     visible: true
     flags: Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint |
            Qt.WindowTitleHint | Qt.WindowCloseButtonHint |
-           Qt.CustomizeWindowHint | Qt.WindowSystemMenuHint |
-           Qt.WindowContextHelpButtonHint
+           Qt.CustomizeWindowHint | Qt.WindowSystemMenuHint// |
+//           Qt.WindowContextHelpButtonHint
     width: 640
     height: 480
     title: qsTr("Qt程序打包工具V0.9(By Qtbig哥)")
@@ -128,12 +128,24 @@ Window {
             onClicked: versionMode.create()
         }
 
-        MyButton {
+        Row {
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width - 10
-            height: 40
-            text: "测试"
-            onClicked: versionMode.test()
+            spacing: 5
+
+            MyButton {
+                width: (parent.width - 5)/2
+                height: 40
+                text: "测试"
+                onClicked: versionMode.test()
+            }
+
+            MyButton {
+                width: (parent.width - 5)/2
+                height: 40
+                text: "关于"
+                onClicked: versionMode.test()
+            }
         }
     }
 
