@@ -17,7 +17,8 @@ Window {
     visible: true
     flags: Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint |
            Qt.WindowTitleHint | Qt.WindowCloseButtonHint |
-           Qt.CustomizeWindowHint | Qt.WindowSystemMenuHint
+           Qt.CustomizeWindowHint | Qt.WindowSystemMenuHint |
+           Qt.WindowContextHelpButtonHint
     width: 640
     height: 480
     title: qsTr("Qt程序打包工具V0.9(By Qtbig哥)")
@@ -37,11 +38,18 @@ Window {
             if (suffix !== ".exe" && suffix !== ".EXE")
                 isValid = false;
 
-            if (! isValid)
+            if (! isValid) {
                 drag.accepted = false
+            }
+            else {
+                _private.lineEnable = true
+            }
         }
 
+        onExited: _private.lineEnable = false
+
         onDropped: {
+            _private.lineEnable = false
             var firstUrl = drop.urls[0]
             var lastSlashPosition = firstUrl.lastIndexOf('/')+1
             var displayFile = firstUrl.substring(lastSlashPosition)
@@ -93,12 +101,21 @@ Window {
                 border.color: "#e1e4e8"
                 border.width: 2
 
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: parent.width - 8; height: parent.height - 8
+                    color: "#dddddd"
+                    visible: _private.lineEnable
+                    radius: parent.radius
+                }
+
                 Text {
                     id: exeFileText
+                    property string defaultText: "拖拽程序到此处"
                     anchors.centerIn: parent
-                    color: text === "拖拽程序到此处" ? "gray" : "black"
-                    font.pixelSize: 20
-                    text: "拖拽程序到此处"
+                    color: text === defaultText ? "gray" : "black"
+                    font.pixelSize: 30//text === defaultText ? 30 : 20
+                    text: defaultText
                 }
             }
         }
@@ -124,4 +141,8 @@ Window {
         id: versionMode
     }
 
+    QtObject {
+        id: _private
+        property bool lineEnable: false
+    }
 }
