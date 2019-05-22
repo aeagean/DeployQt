@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>Qml/main.qml</file>
+        <file>Qml/Common/ComboBox.qml</file>
+        <file>Qml/Common/RoundRectangle.qml</file>
+        <file>Qml/Common/ContentBar.qml</file>
+        <file>Qml/Common/MyComboBox.qml</file>
     </qresource>
 </RCC>
