@@ -9,13 +9,25 @@ LISCENSE: MIT
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlEngine>
-#include "VersionModel.h"
 #include <stdlib.h>
+#include <QDebug>
+#include "VersionModel.h"
+
+class Application : public QGuiApplication
+{
+public:
+    Application(int &argc, char ** argv) : QGuiApplication(argc, argv) {}
+
+    bool notify(QObject *receiver, QEvent *e) {
+        qDebug()<<e->type();
+        return QGuiApplication::notify(receiver, e);
+    }
+};
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication app(argc, argv);
+    Application app(argc, argv);
 
     qmlRegisterType<VersionModel>("VersionMode", 1, 0, "VersionMode");
 
