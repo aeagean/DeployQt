@@ -2,8 +2,8 @@
 > 基于Windows系统的Qt打包程序
 
 ## 适用范围
-* Window系统
-* Qt5.0版本以上编译的程序
+* Window系统;
+* Qt5.0版本以上编译的程序。
 
 ## 使用方法
 1. 将需要打包的程序拖拽到打包工具中；
@@ -11,9 +11,12 @@
 3. 点击生成；
 4. 最后测试。
 
-## 发布包下载
-* 
+## 下载使用
+* [源码包下载地址](https://github.com/aeagean/DeployQt/archive/master.zip)
+* [执行文件下载地址]()
 
 ## 更新日志
 * 详见:[更新记录](https://github.com/aeagean/DeployQt/blob/master/ChangeLogs.md)
 
+## 关于作者
+|||
