@@ -1,4 +1,4 @@
-QT += quick qml
+QT += quick qml core
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -14,7 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    VersionModel.cpp
+    VersionModel.cpp \
+    ToolsModel.cpp
 
 RC_ICONS = app.ico
 RESOURCES += \
@@ -33,4 +34,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    VersionModel.h
+    VersionModel.h \
+    ToolsModel.h

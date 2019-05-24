@@ -7,6 +7,8 @@ QQ交流群: 732271126
 LISCENSE: MIT
 **********************************************************/
 import QtQuick 2.0
+import ToolsModel 1.0
+import "../Common"
 
 Rectangle {
     width: 640; height: 480
@@ -21,9 +23,19 @@ Rectangle {
             width: parent.width*0.25; //height: parent.height
             spacing: 20
 
-            Image {
-                width: parent.width; height: width
-                source: "qrc:/Resource/Qtbig.png"
+            Column {
+                width: parent.width; height: width + 40
+                spacing: 10
+
+                Image {
+                    width: parent.width; height: width
+                    source: "qrc:/Resource/Qtbig.png"
+                }
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "作者: QtBig哥"
+                }
             }
 
             Column {
@@ -45,16 +57,30 @@ Rectangle {
         }
 
         Column {
+            anchors.verticalCenter: parent.verticalCenter
             spacing: 15
-            Text {
-                text: "作者: QtBig哥"
-            }
-            Text {
-                text: "微信公众号: 你才小学生 (每天更新)"
-            }
-            Text {
-                text: "源码地址: https://github.com/aeagean/DeployQt"
+
+            Row {
+                height: 30
+                spacing: 5
+
+                Text {
+                    id: sourceCode
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "源码地址: https://github.com/aeagean/DeployQt"
+                }
+
+                MyButton {
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: 60; height: 30
+                    text: "打开"
+                    onClicked: toolsModel.openUrl("https://github.com/aeagean/DeployQt")
+                }
             }
         }
+    }
+
+    ToolsModel {
+        id: toolsModel
     }
 }

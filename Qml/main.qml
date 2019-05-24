@@ -56,7 +56,7 @@ Window {
             var displayFile = firstUrl.substring(lastSlashPosition)
 
             exeFileText.text = displayFile
-            versionMode.exeFile = firstUrl.substr(8) // remote prefix "file:///"
+            versionMode.exeFile = firstUrl.substr(8) // remove prefix "file:///"
         }
 
     }
