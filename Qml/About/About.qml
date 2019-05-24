@@ -8,24 +8,44 @@ LISCENSE: MIT
 **********************************************************/
 import QtQuick 2.0
 
-Item {
+Rectangle {
     width: 640; height: 480
 
     Row {
         anchors.centerIn: parent
         width: parent.width - 10; height: parent.height - 10
+        spacing: 20
 
         Column {
-            width: parent.width*0.25; height: parent.height
-            spacing: 10
+            anchors.verticalCenter: parent.verticalCenter
+            width: parent.width*0.25; //height: parent.height
+            spacing: 20
 
             Image {
-                source: "file:///C:/Users/Ema-RD/Downloads/tmp/DeployQt/Resource/Qtbig哥.png"
+                width: parent.width; height: width
+                source: "qrc:/Resource/Qtbig.png"
             }
 
+            Column {
+                width: parent.width
+                height: width + 40
+                clip: true
+
+                Image {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: parent.width + 23; height: width
+                    source: "qrc:/Resource/Qtbig_qrcode.jpg"
+                }
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "扫一扫关注微信公众号"
+                }
+            }
         }
 
         Column {
+            spacing: 15
             Text {
                 text: "作者: QtBig哥"
             }
@@ -33,7 +53,7 @@ Item {
                 text: "微信公众号: 你才小学生 (每天更新)"
             }
             Text {
-                text: "源码地址: "
+                text: "源码地址: https://github.com/aeagean/DeployQt"
             }
         }
     }

@@ -17,7 +17,9 @@ SOURCES += \
     VersionModel.cpp
 
 RC_ICONS = app.ico
-RESOURCES += qml.qrc
+RESOURCES += \
+    Resources.qrc \
+    Qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =

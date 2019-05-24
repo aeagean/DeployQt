@@ -6,5 +6,6 @@
         <file>Qml/Common/ContentBar.qml</file>
         <file>Qml/Common/MyComboBox.qml</file>
         <file>Qml/Common/MyButton.qml</file>
+        <file>Qml/About/About.qml</file>
     </qresource>
 </RCC>
