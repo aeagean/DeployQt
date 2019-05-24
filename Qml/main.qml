@@ -11,6 +11,7 @@ import QtQuick.Window 2.2
 import VersionMode 1.0
 
 import "./Common"
+import "./About"
 
 Window {
     id: root
@@ -144,9 +145,14 @@ Window {
                 width: (parent.width - 5)/2
                 height: 40
                 text: "关于"
-                onClicked: versionMode.test()
+                onClicked: aboutDialog.visible = true
             }
         }
+    }
+
+    About {
+        id: aboutDialog
+        visible: false
     }
 
     VersionMode {

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resource/Qtbig.png</file>
+        <file>Resource/Qtbig_qrcode.jpg</file>
+    </qresource>
+</RCC>
