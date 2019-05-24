@@ -11,6 +11,9 @@
 3. 点击生成；
 4. 最后测试。
 
+## 注意
+* 不能打包第三方库，需要自己复制到程序运行目录下
+
 ## 下载使用
 * [源码包下载地址](https://github.com/aeagean/DeployQt/archive/master.zip)
 * [执行文件下载地址]()
