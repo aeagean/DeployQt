@@ -11,7 +11,10 @@ import ToolsModel 1.0
 import "../Common"
 
 Rectangle {
+    id: root
     width: 640; height: 480
+
+    MouseArea { anchors.fill: parent }
 
     Row {
         anchors.centerIn: parent
@@ -20,7 +23,7 @@ Rectangle {
 
         Column {
             anchors.verticalCenter: parent.verticalCenter
-            width: parent.width*0.25; //height: parent.height
+            width: parent.width * 0.25; //height: parent.height
             spacing: 20
 
             Column {
@@ -57,24 +60,94 @@ Rectangle {
         }
 
         Column {
-            anchors.verticalCenter: parent.verticalCenter
+            id: rightBar
+            y: 26
+            width: parent.width * 0.75 - 20
             spacing: 15
 
-            Row {
-                height: 30
-                spacing: 5
+            Repeater {
+                model: [
+                    {
+                        title: "适用范围: ",
+                        content: "1. Window系统;\n2. Qt5.0版本以上编译的程序。"
+                    },
+                    {
+                        title: "使用方法: ",
+                        content: "1. 将需要打包的程序拖拽到打包工具中;\n2. 选择该程序编译时的Qt版本和编译器版本;\n3. 点击生成;\n4. 最后测试。"
+                    },
+                    {
+                        title: "获取更多: ",
+                        content: ""
+                    }
+                ]
 
-                Text {
-                    id: sourceCode
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: "源码地址: https://github.com/aeagean/DeployQt"
+                Item {
+                    width: rightBar.width
+                    height: displayInfo.height
+
+                    Column {
+                        id: displayInfo
+                        spacing: 10
+                        Text {
+                            id: title
+                            text: modelData.title
+                            font.pixelSize: 25
+                        }
+
+                        Text {
+                            id: content
+                            text: modelData.content
+                            lineHeight: 1.5
+                        }
+                    }
+
                 }
+            }
+
+
+            Repeater {
+                model: [
+                    {
+                        content: "源码地址: https://github.com/aeagean/DeployQt",
+                        buttonText: "打开",
+                        url: "https://github.com/aeagean/DeployQt"
+                    },
+                    {
+                        content: "Big哥网站: http://www.qtbig.com",
+                        buttonText: "打开",
+                        url: "http://www.qtbig.com"
+                    },
+                ]
+
+                Item {
+                    width: parent.width
+                    height: 10
+
+                    Text {
+                        id: sourceCode
+                        anchors.left: parent.left
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: modelData.content
+                    }
+
+                    MyButton {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: 60; height: 20
+                        text: modelData.buttonText
+                        onClicked: toolsModel.openUrl(modelData.url)
+                    }
+                }
+            }
+
+            Item {
+                width: parent.width; height: 100
 
                 MyButton {
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: 60; height: 30
-                    text: "打开"
-                    onClicked: toolsModel.openUrl("https://github.com/aeagean/DeployQt")
+                    anchors.centerIn: parent
+                    width: 80; height: 35
+                    text: "返回"
+                    onClicked: root.visible = false
                 }
             }
         }
