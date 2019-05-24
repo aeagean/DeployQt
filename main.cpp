@@ -12,6 +12,7 @@ LISCENSE: MIT
 #include <stdlib.h>
 #include <QDebug>
 #include "VersionModel.h"
+#include "ToolsModel.h"
 
 class Application : public QGuiApplication
 {
@@ -30,6 +31,7 @@ int main(int argc, char *argv[])
     Application app(argc, argv);
 
     qmlRegisterType<VersionModel>("VersionMode", 1, 0, "VersionMode");
+    qmlRegisterType<ToolsModel>("ToolsModel", 1, 0, "ToolsModel");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/Qml/main.qml")));
