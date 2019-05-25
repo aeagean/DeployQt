@@ -1,5 +1,5 @@
 # Qt程序打包工具
-> 基于Windows系统的Qt打包程序
+> 由于Qt软件提供的windeployqt采用命令行操作，打包程序起来相对繁琐。而现有大多数的打包工具又不能针对Qt而打包，往往是一些库打包不成功，又或者操作繁琐。如果有一个可视化的傻瓜式的打包工具就好了。也就是这一原因，决定写这个基于Windows系统的可视化Qt打包程序，并开源其代码供大家一起学习进步。
 
 ![Qt程序打包工具](https://github.com/aeagean/DeployQt/blob/master/Test/Qt%E7%A8%8B%E5%BA%8F%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7V1.0.gif?raw=true)
 
@@ -14,7 +14,7 @@
 4. 最后测试。
 
 ## 3. 注意
-* 不能打包第三方库，需要自己复制到程序运行目录下
+* 不能打包引入的第三方库，需要自己复制到程序运行目录下
 
 ## 4. 下载使用
 * [最新源代码下载地址](https://github.com/aeagean/DeployQt/archive/master.zip)
