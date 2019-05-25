@@ -54,7 +54,7 @@ Rectangle {
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "扫一扫关注微信公众号"
+                    text: "扫码关注反馈问题"
                 }
             }
         }
