@@ -22,9 +22,9 @@ Rectangle {
         spacing: 20
 
         Column {
-            anchors.verticalCenter: parent.verticalCenter
-            width: parent.width * 0.25; //height: parent.height
-            spacing: 20
+            y: 10
+            width: parent.width * 0.25;
+            spacing: 30
 
             Column {
                 width: parent.width; height: width + 40
@@ -61,7 +61,7 @@ Rectangle {
 
         Column {
             id: rightBar
-            y: 26
+            y: 10
             width: parent.width * 0.75 - 20
             spacing: 15
 
@@ -76,7 +76,11 @@ Rectangle {
                         content: "1. 将需要打包的程序拖拽到打包工具中;\n2. 选择该程序编译时的Qt版本和编译器版本;\n3. 点击生成;\n4. 最后测试。"
                     },
                     {
-                        title: "获取更多: ",
+                        title: "注意: ",
+                        content: "程序引入的第三方库需要用户自己复制到运行程序目录下。"
+                    },
+                    {
+                        title: "获取更多",
                         content: ""
                     }
                 ]
@@ -141,10 +145,11 @@ Rectangle {
             }
 
             Item {
-                width: parent.width; height: 100
+                width: parent.width; height: 55
 
                 MyButton {
-                    anchors.centerIn: parent
+                    x: 150
+                    anchors.verticalCenter: parent.verticalCenter
                     width: 80; height: 35
                     text: "返回"
                     onClicked: root.visible = false
