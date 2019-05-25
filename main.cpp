@@ -20,7 +20,6 @@ public:
     Application(int &argc, char ** argv) : QGuiApplication(argc, argv) {}
 
     bool notify(QObject *receiver, QEvent *e) {
-        qDebug()<<e->type();
         return QGuiApplication::notify(receiver, e);
     }
 };

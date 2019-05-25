@@ -7,5 +7,6 @@
         <file>Qml/Common/MyComboBox.qml</file>
         <file>Qml/Common/MyButton.qml</file>
         <file>Qml/About/About.qml</file>
+        <file>Qml/TipsDialog.qml</file>
     </qresource>
 </RCC>
