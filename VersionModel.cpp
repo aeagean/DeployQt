@@ -50,6 +50,9 @@ bool VersionModel::create()
         process.waitForFinished();
         qDebug()<<"[Info]"<<"Result Output: "<<process.readAllStandardOutput().toStdString().c_str();
         qDebug()<<"[Info]"<<"Error Output: "<<process.readAllStandardError().toStdString().c_str();
+        qDebug()<<"[Info]"<<"Status: "<<process.exitCode()<<process.exitStatus();
+
+        return process.exitCode() == 0 && process.exitStatus() == QProcess::NormalExit;
     }
 
     return true;
@@ -59,13 +62,15 @@ bool VersionModel::test()
 {
     qDebug()<<"[Info]"<<"testing"<<m_exeFile;
     QFileInfo testFileInfo(m_exeFile);
-//    m_testProcess.setWorkingDirectory(testFileInfo.absolutePath());
-    m_testProcess.startDetached(m_exeFile);
-//    m_testProcess.waitForFinished();
-    qDebug()<<m_testProcess.readAllStandardOutput();
-    qDebug()<<m_testProcess.readAllStandardError();
+    m_testProcess.start(m_exeFile);
+    m_testProcess.waitForStarted();
+    m_testProcess.waitForFinished();
 
-    return true;
+    qDebug()<<"[Info]"<<"Test Process Output: "<<m_testProcess.readAllStandardOutput();
+    qDebug()<<"[Info]"<<"Test Process Input: "<<m_testProcess.readAllStandardError();
+    qDebug()<<"[Info]"<<"Test status: "<<m_testProcess.exitCode()<<m_testProcess.exitStatus()<<m_testProcess.errorString();
+
+    return m_testProcess.exitCode() == 0 && m_testProcess.exitStatus() == QProcess::NormalExit;
 }
 
 QStringList VersionModel::qtVersionList()

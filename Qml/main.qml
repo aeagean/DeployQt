@@ -19,7 +19,7 @@ Window {
     flags: Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint |
            Qt.WindowTitleHint | Qt.WindowCloseButtonHint |
            Qt.CustomizeWindowHint | Qt.WindowSystemMenuHint// |
-//           Qt.WindowContextHelpButtonHint
+    //           Qt.WindowContextHelpButtonHint
     width: 640
     height: 480
     title: qsTr("Qt程序打包工具V0.9(By Qtbig哥)")
@@ -55,7 +55,7 @@ Window {
             var lastSlashPosition = firstUrl.lastIndexOf('/')+1
             var displayFile = firstUrl.substring(lastSlashPosition)
 
-            exeFileText.text = displayFile
+            _private.displayExeFile = displayFile
             versionMode.exeFile = firstUrl.substr(8) // remove prefix "file:///"
         }
 
@@ -116,7 +116,7 @@ Window {
                     anchors.centerIn: parent
                     color: text === defaultText ? "gray" : "black"
                     font.pixelSize: 30//text === defaultText ? 30 : 20
-                    text: defaultText
+                    text: _private.displayExeFile.length === 0 ?  defaultText : _private.displayExeFile
                 }
             }
         }
@@ -126,7 +126,16 @@ Window {
             width: parent.width - 10
             height: 40
             text: "生成"
-            onClicked: versionMode.create()
+            onClicked: {
+                if (versionMode.exeFile.length === 0) {
+                    tipsDialog.show("请添加目标程序")
+                    tipsDialog.delayHide(1500)
+                    return
+                }
+
+                tipsDialog.show("正在生成")
+                delayCreate.start()
+            }
         }
 
         Row {
@@ -138,7 +147,17 @@ Window {
                 width: (parent.width - 5)/2
                 height: 40
                 text: "测试"
-                onClicked: versionMode.test()
+                onClicked: {
+                    if (versionMode.exeFile.length === 0) {
+                        tipsDialog.show("请添加目标程序")
+                        tipsDialog.delayHide(1500)
+                        return
+                    }
+
+                    tipsDialog.show("正在打开[" + _private.displayExeFile + "]")
+
+                    delayTest.start()
+                }
             }
 
             MyButton {
@@ -155,6 +174,11 @@ Window {
         visible: false
     }
 
+    TipsDialog {
+        id: tipsDialog
+        anchors.fill: parent
+    }
+
     VersionMode {
         id: versionMode
     }
@@ -162,5 +186,37 @@ Window {
     QtObject {
         id: _private
         property bool lineEnable: false
+        property string displayExeFile: ""
+    }
+
+    Timer {
+        id: delayCreate
+        repeat: false;
+        interval: 300
+        onTriggered: {
+            if (! versionMode.create()) {
+                tipsDialog.show("生成失败, 请检查编译器是否存在。")
+                tipsDialog.delayHide(3000)
+            }
+            else {
+                tipsDialog.show("生成成功")
+                tipsDialog.delayHide(2000)
+            }
+        }
+    }
+
+    Timer {
+        id: delayTest
+        repeat: false;
+        interval: 300
+        onTriggered: {
+            if (! versionMode.test()) {
+                tipsDialog.show("测试失败，切换编译器试试。")
+                tipsDialog.delayHide(1500)
+            }
+            else {
+                tipsDialog.delayHide(500)
+            }
+        }
     }
 }
