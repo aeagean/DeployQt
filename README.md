@@ -15,8 +15,9 @@
 * 不能打包第三方库，需要自己复制到程序运行目录下
 
 ## 下载使用
-* [源码包下载地址](https://github.com/aeagean/DeployQt/archive/master.zip)
-* [执行文件下载地址]()
+* [最新源代码下载地址](https://github.com/aeagean/DeployQt/archive/master.zip)
+* [V1.0源码包下载地址](https://github.com/aeagean/DeployQt/archive/V1.0.zip)
+* [V1.0运行文件下载地址](https://github.com/aeagean/DeployQt/releases/download/V1.0/Qt.V1.0.exe)
 
 ## 更新日志
 * 详见:[更新记录](https://github.com/aeagean/DeployQt/blob/master/ChangeLogs.md)
