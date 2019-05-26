@@ -22,7 +22,7 @@ Window {
     //           Qt.WindowContextHelpButtonHint
     width: 640
     height: 480
-    title: qsTr("Qt程序打包工具V1.0")
+    title: qsTr("Qt程序打包工具V1.0.1")
 
     DropArea {
         anchors.fill: parent;
