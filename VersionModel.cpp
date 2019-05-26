@@ -14,8 +14,31 @@ LISCENSE: MIT
 
 static const QString PROGRAMS_PATH = QDir::homePath() + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/";
 
+static QString qtEnvPath(const QString &envPath)
+{
+    QString result;
+    QFile file(envPath + "/qtenv2.bat");
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug()<<"[Info] "<<"Qt Env Path: "<<result;
+        return result;
+    }
+
+    while (!file.atEnd()) {
+        QString line = QString(file.readLine());
+        int index = line.indexOf("set PATH=");
+        if (index != -1) {
+            result = line.mid(9).remove("%PATH%").trimmed();
+        }
+    }
+
+    file.close();
+    qDebug()<<"[Info] "<<"Qt Env Path: "<<result;
+    return result;
+}
+
 VersionModel::VersionModel()
 {
+    m_sourceEnvPath = qgetenv("PATH");
 }
 
 bool VersionModel::create()
@@ -43,10 +66,11 @@ bool VersionModel::create()
         arguments<<"--qmldir"<<qtPath + "/qml"<<m_exeFile<<"--release";
 
         QProcess process;
-        QString path = qtBinPath + ";" + qgetenv("PATH");
+        QString path = qtEnvPath(qtBinPath) + ";" + m_sourceEnvPath;
         qputenv("PATH", path.toStdString().c_str());
         process.start("windeployqt.exe", arguments);
 
+        process.waitForStarted();
         process.waitForFinished();
         qDebug()<<"[Info]"<<"Result Output: "<<process.readAllStandardOutput().toStdString().c_str();
         qDebug()<<"[Info]"<<"Error Output: "<<process.readAllStandardError().toStdString().c_str();

@@ -51,6 +51,7 @@ private:
     QString m_qtVersionDirName;
     QString m_compilerVersion;
     QString m_exeFile;
+    QString m_sourceEnvPath;
     QProcess m_testProcess;
 };
 
