@@ -16,13 +16,14 @@
 ## 3. 注意
 * 不能打包引入的第三方库，需要自己复制到程序运行目录下
 
-## 4. 下载使用
+## 4. 下载使用(最新版本V1.0.1)
 * [最新源代码下载地址](https://github.com/aeagean/DeployQt/archive/master.zip)
 * [V1.0源码包下载地址](https://github.com/aeagean/DeployQt/archive/V1.0.zip)
 * [V1.0运行文件下载地址](https://github.com/aeagean/DeployQt/releases/download/V1.0/Qt.V1.0.exe)
 
-## 5. 更新日志
-* 详见:[更新记录](https://github.com/aeagean/DeployQt/blob/master/ChangeLogs.md)
+## 5. 关于更新
+* 了解最新版本详见: [更新记录](https://github.com/aeagean/DeployQt/blob/master/ChangeLogs.md)
+* 获取版本列表: [版本列表](https://github.com/aeagean/DeployQt/releases)
 
 ## 6. 关于作者
 |big哥公众号(每天更新)|你才小学生|
