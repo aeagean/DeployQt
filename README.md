@@ -27,9 +27,9 @@
 * 获取版本列表: [版本列表](https://github.com/aeagean/DeployQt/releases)
 
 ## 6. 关于作者
-|big哥公众号(每天更新)|你才小学生|
+|Qt君公众号(每天更新)|Qt君|
 |---|---|
-|big哥个人网站|[www.qtbig.com](http://www.qtbig.com)|
+|Qt君个人网站|[www.qtbig.com](http://www.qtbig.com)|
 |QQ交流群|732271126|
 
 <p align="center">
