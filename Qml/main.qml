@@ -16,10 +16,10 @@ import "./About"
 Window {
     id: root
     visible: true
-    flags: Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint |
-           Qt.WindowTitleHint | Qt.WindowCloseButtonHint |
-           Qt.CustomizeWindowHint | Qt.WindowSystemMenuHint// |
-    //           Qt.WindowContextHelpButtonHint
+    flags: Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint
+           | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+           | Qt.CustomizeWindowHint | Qt.WindowSystemMenuHint
+           | Qt.WindowMinimizeButtonHint | Qt.WindowStaysOnTopHint
     width: 640
     height: 480
     title: qsTr("Qt程序打包工具V1.0.1")
