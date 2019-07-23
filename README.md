@@ -1,6 +1,7 @@
-# 下载使用
-* [最新执行文件下载地址](https://github.com/aeagean/DeployQt/releases/download/v1.0.1/QtDeploy-v1.0.1.rar)
----
+| 下载地址 | 
+| --- |
+| [打包工具运行文件](https://github.com/aeagean/DeployQt/releases/download/v1.0.1/QtDeploy-v1.0.1.rar) |
+
 # Qt程序打包工具(最新版本v1.0.1)
 > 由于Qt软件提供的windeployqt采用命令行操作，打包程序起来相对繁琐。而现有大多数的打包工具又不能针对Qt而打包，往往是一些库打包不成功，又或者操作繁琐。如果有一个可视化的傻瓜式的打包工具就好了。也就是这一原因，决定写这个基于Windows系统的可视化Qt打包程序，并开源其代码供大家一起学习进步。
 
