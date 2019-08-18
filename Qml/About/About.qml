@@ -1,10 +1,9 @@
 ﻿/**********************************************************
-Author: Qtbig哥
-WeChat Official Accounts Platform: nicaixiaoxuesheng (文章首发)
-Website: qtbig.com(后续更新)
-Email:  2088201923@qq.com
-QQ交流群: 732271126
-LISCENSE: MIT
+Author: Qt君
+微信公众号: Qt君(首发)
+QQ群: 732271126
+Email: 2088201923@qq.com
+LICENSE: MIT
 **********************************************************/
 import QtQuick 2.0
 import ToolsModel 1.0
@@ -37,7 +36,7 @@ Rectangle {
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "作者: QtBig哥"
+                    text: "作者: Qt君"
                 }
             }
 
@@ -54,7 +53,7 @@ Rectangle {
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "扫码关注反馈问题"
+                    text: "扫码关注"
                 }
             }
         }
