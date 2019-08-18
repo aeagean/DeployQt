@@ -86,9 +86,14 @@ bool VersionModel::test()
 {
     qDebug()<<"[Info]"<<"testing"<<m_exeFile;
     QFileInfo testFileInfo(m_exeFile);
-    m_testProcess.start(m_exeFile);
-    m_testProcess.waitForStarted();
-    m_testProcess.waitForFinished();
+    m_testProcess.setProgram(m_exeFile);
+    m_testProcess.start();
+
+    if (! m_testProcess.waitForStarted())
+        return false;
+
+    if (! m_testProcess.waitForFinished())
+        return false;
 
     qDebug()<<"[Info]"<<"Test Process Output: "<<m_testProcess.readAllStandardOutput();
     qDebug()<<"[Info]"<<"Test Process Input: "<<m_testProcess.readAllStandardError();
