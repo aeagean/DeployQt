@@ -46,6 +46,7 @@ bool VersionModel::create()
     qDebug()<<"[Info] "<<"Exe File: "<<m_exeFile;
     qDebug()<<"[Info] "<<"Qt Version: "<<m_qtVersion;
     qDebug()<<"[Info] "<<"Compiler Version: "<<m_compilerVersion;
+    qDebug()<<"[Info] "<<"Build Type: "<< m_buildType;
 
     QDir dir(PROGRAMS_PATH + m_qtVersion + "/" + m_qtVersionDirName + "/" + m_compilerVersion);
     QStringList dirs = dir.entryList(QDir::Files);
@@ -62,7 +63,7 @@ bool VersionModel::create()
         qDebug()<<"[Info] "<<qtBinPath;
 
         QStringList arguments;
-        arguments<<"--qmldir"<<qtPath + "/qml"<<m_exeFile<<"--release";
+        arguments<<"--qmldir"<<qtPath + "/qml"<<m_exeFile<<"--"<<m_buildType;
 
         QProcess process;
         QString path = qtEnvPath(qtBinPath) + ";" + m_sourceEnvPath;
@@ -125,6 +126,28 @@ QStringList VersionModel::compilerVersionList()
         m_compilerVersion = compilerList.first();
 
     return compilerList;
+}
+
+QStringList VersionModel::buildTypeList()
+{
+    static const QStringList list {
+        "debug",
+        "profile",
+        "release"
+    };
+
+    return list;
+}
+
+QString VersionModel::buildType()
+{
+    return m_buildType;
+}
+
+void VersionModel::setBuildType(const QString &buildType)
+{
+    m_buildType = buildType;
+    emit statusChanged();
 }
 
 QString VersionModel::qtVersion()

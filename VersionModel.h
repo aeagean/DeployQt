@@ -16,7 +16,9 @@ class VersionModel : public QObject
     Q_OBJECT
     Q_PROPERTY(QStringList qtVersionList       READ qtVersionList                            NOTIFY listChanged)
     Q_PROPERTY(QStringList compilerVersionList READ compilerVersionList                      NOTIFY listChanged)
+    Q_PROPERTY(QStringList buildTypeList       READ buildTypeList                            NOTIFY listChanged)
     Q_PROPERTY(QString     qtVersion           READ qtVersion       WRITE setQtVersion       NOTIFY statusChanged)
+    Q_PROPERTY(QString     buildType           READ buildType       WRITE setBuildType       NOTIFY statusChanged)
     Q_PROPERTY(QString     compilerVersion     READ compilerVersion WRITE setCompilerVersion NOTIFY statusChanged)
     Q_PROPERTY(QString     exeFile             READ exeFile         WRITE setExeFile         NOTIFY statusChanged)
 
@@ -28,7 +30,11 @@ public:
 
     QStringList qtVersionList();
     QStringList compilerVersionList();
+    QStringList buildTypeList();
 
+
+    QString     buildType();
+    void        setBuildType(const QString &buildType);
 
     QString     qtVersion();
     void        setQtVersion(const QString &version);
@@ -49,6 +55,7 @@ private:
     QString m_qtVersion;
     QString m_qtVersionDirName;
     QString m_compilerVersion;
+    QString m_buildType;
     QString m_exeFile;
     QString m_sourceEnvPath;
     QProcess m_testProcess;

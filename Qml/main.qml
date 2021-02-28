@@ -20,7 +20,7 @@ Window {
            | Qt.CustomizeWindowHint | Qt.WindowSystemMenuHint
            | Qt.WindowMinimizeButtonHint | Qt.WindowStaysOnTopHint
     width: 640
-    height: 480
+    height: 540
     title: qsTr("Qt程序打包工具v1.0.1")
 
     DropArea {
@@ -86,6 +86,18 @@ Window {
             MyComboBox {
                 model: versionMode.compilerVersionList
                 onCurrentTextChanged: versionMode.compilerVersion = currentText
+            }
+        }
+
+        ContentBar {
+            z: 1
+            width: parent.width
+            height: 40
+            text: "选择构建方式"
+
+            MyComboBox {
+                model: versionMode.buildTypeList
+                onCurrentTextChanged: versionMode.buildType = currentText
             }
         }
 
