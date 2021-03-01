@@ -46,6 +46,7 @@ bool VersionModel::create()
     qDebug()<<"[Info] "<<"Exe File: "<<m_exeFile;
     qDebug()<<"[Info] "<<"Qt Version: "<<m_qtVersion;
     qDebug()<<"[Info] "<<"Compiler Version: "<<m_compilerVersion;
+    qDebug()<<"[Info] "<<"Build Type: "<< m_buildType;
 
     QDir dir(PROGRAMS_PATH + m_qtVersion + "/" + m_qtVersionDirName + "/" + m_compilerVersion);
     QStringList dirs = dir.entryList(QDir::Files);
@@ -58,11 +59,19 @@ bool VersionModel::create()
         QDir qtDir = sourceFile.dir();
         qtDir.cdUp();
         QString qtPath = qtDir.path();
+        QString qmlPath;
+        if(m_qmlDir.isLocalFile()) {
+            qmlPath = m_qmlDir.toLocalFile();
+        }
         qDebug()<<"[Info] "<<"Qt Path"<<qtPath;
         qDebug()<<"[Info] "<<qtBinPath;
-
+        qDebug()<<"[Info] "<<"qmldir" <<qmlPath;
         QStringList arguments;
-        arguments<<"--qmldir"<<qtPath + "/qml"<<m_exeFile<<"--release";
+        if(!qmlPath.isEmpty()) {
+            arguments << "--qmldir" << qmlPath;
+        }
+
+        arguments << m_exeFile << "--" << m_buildType;
 
         QProcess process;
         QString path = qtEnvPath(qtBinPath) + ";" + m_sourceEnvPath;
@@ -127,6 +136,28 @@ QStringList VersionModel::compilerVersionList()
     return compilerList;
 }
 
+QStringList VersionModel::buildTypeList()
+{
+    static const QStringList list {
+        "debug",
+        "profile",
+        "release"
+    };
+
+    return list;
+}
+
+QString VersionModel::buildType()
+{
+    return m_buildType;
+}
+
+void VersionModel::setBuildType(const QString &buildType)
+{
+    m_buildType = buildType;
+    emit statusChanged();
+}
+
 QString VersionModel::qtVersion()
 {
     return m_qtVersion;
@@ -159,5 +190,17 @@ QString VersionModel::exeFile()
 void VersionModel::setExeFile(const QString &file)
 {
     m_exeFile = file;
+    emit statusChanged();
+}
+
+QUrl VersionModel::qmlDir()
+{
+    return m_qmlDir;
+}
+
+void VersionModel::setQmlDir(const QUrl &dir)
+{
+    m_qmlDir = dir;
+    qDebug() << m_qmlDir;
     emit statusChanged();
 }
