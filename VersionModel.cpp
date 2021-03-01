@@ -59,11 +59,19 @@ bool VersionModel::create()
         QDir qtDir = sourceFile.dir();
         qtDir.cdUp();
         QString qtPath = qtDir.path();
+        QString qmlPath;
+        if(m_qmlDir.isLocalFile()) {
+            qmlPath = m_qmlDir.toLocalFile();
+        }
         qDebug()<<"[Info] "<<"Qt Path"<<qtPath;
         qDebug()<<"[Info] "<<qtBinPath;
-
+        qDebug()<<"[Info] "<<"qmldir" <<qmlPath;
         QStringList arguments;
-        arguments<<"--qmldir"<<qtPath + "/qml"<<m_exeFile<<"--"<<m_buildType;
+        if(!qmlPath.isEmpty()) {
+            arguments << "--qmldir" << qmlPath;
+        }
+
+        arguments << m_exeFile << "--" << m_buildType;
 
         QProcess process;
         QString path = qtEnvPath(qtBinPath) + ";" + m_sourceEnvPath;
@@ -182,5 +190,17 @@ QString VersionModel::exeFile()
 void VersionModel::setExeFile(const QString &file)
 {
     m_exeFile = file;
+    emit statusChanged();
+}
+
+QUrl VersionModel::qmlDir()
+{
+    return m_qmlDir;
+}
+
+void VersionModel::setQmlDir(const QUrl &dir)
+{
+    m_qmlDir = dir;
+    qDebug() << m_qmlDir;
     emit statusChanged();
 }

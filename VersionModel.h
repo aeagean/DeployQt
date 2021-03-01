@@ -10,6 +10,7 @@ LICENSE: MIT
 
 #include <QObject>
 #include <QProcess>
+#include <QUrl>
 
 class VersionModel : public QObject
 {
@@ -21,7 +22,7 @@ class VersionModel : public QObject
     Q_PROPERTY(QString     buildType           READ buildType       WRITE setBuildType       NOTIFY statusChanged)
     Q_PROPERTY(QString     compilerVersion     READ compilerVersion WRITE setCompilerVersion NOTIFY statusChanged)
     Q_PROPERTY(QString     exeFile             READ exeFile         WRITE setExeFile         NOTIFY statusChanged)
-
+    Q_PROPERTY(QUrl        qmlDir              READ qmlDir          WRITE setQmlDir          NOTIFY statusChanged)
 public:
     VersionModel();
 
@@ -31,7 +32,6 @@ public:
     QStringList qtVersionList();
     QStringList compilerVersionList();
     QStringList buildTypeList();
-
 
     QString     buildType();
     void        setBuildType(const QString &buildType);
@@ -45,6 +45,10 @@ public:
     QString     exeFile();
     void        setExeFile(const QString &file);
 
+
+    QUrl        qmlDir();
+    void        setQmlDir(const QUrl &dir);
+
 signals:
     void listChanged();
     void statusChanged();
@@ -57,6 +61,7 @@ private:
     QString m_compilerVersion;
     QString m_buildType;
     QString m_exeFile;
+    QUrl    m_qmlDir;
     QString m_sourceEnvPath;
     QProcess m_testProcess;
 };

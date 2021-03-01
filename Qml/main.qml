@@ -7,6 +7,9 @@ LICENSE: MIT
 **********************************************************/
 import QtQuick 2.0
 import QtQuick.Window 2.2
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.0
+import Qt.labs.platform 1.0
 import VersionMode 1.0
 
 import "./Common"
@@ -20,7 +23,7 @@ Window {
            | Qt.CustomizeWindowHint | Qt.WindowSystemMenuHint
            | Qt.WindowMinimizeButtonHint | Qt.WindowStaysOnTopHint
     width: 640
-    height: 540
+    height: 560
     title: qsTr("Qt程序打包工具v1.0.1")
 
     DropArea {
@@ -63,7 +66,7 @@ Window {
     Column {
         anchors.verticalCenter: parent.verticalCenter
         width: parent.width
-        spacing: 15
+        spacing: 10
 
         ContentBar {
             z: 2
@@ -99,6 +102,61 @@ Window {
                 model: versionMode.buildTypeList
                 onCurrentTextChanged: versionMode.buildType = currentText
             }
+        }
+
+        ContentBar {
+            width: parent.width
+            height: 40
+            text: "选择Qt类型"
+
+            Row {
+                height: 40
+                RadioButton {
+                    id: widgetButton
+                    checked: true
+                    text: "widget"
+                    width: 90
+                    onCheckedChanged:  {
+                        if(checked) {
+                            versionMode.qmlDir = ""
+                        }
+                    }
+                }
+
+                RadioButton {
+                    id: qmlButton
+                    text: "qml"
+                    width: 70
+                }
+
+                TextField {
+                    width: parent.width - qmlButton.width - widgetButton.width - qmlFileDialogButton.width
+                    height: 40
+                    visible: qmlButton.checked
+                    text: qmlFolderDialog.folder
+                    placeholderText: "qml 文件路径"
+                    selectByMouse: true
+                    onTextChanged: {
+                        versionMode.qmlDir = text
+                    }
+                }
+
+                MyButton {
+                    visible: qmlButton.checked
+                    id: qmlFileDialogButton
+                    text: "..."
+                    height: 40
+                    width: 30
+                    onClicked: {
+                        qmlFolderDialog.open()
+                    }
+                }
+
+                FolderDialog {
+                    id: qmlFolderDialog
+                }
+            }
+
         }
 
         Item {
